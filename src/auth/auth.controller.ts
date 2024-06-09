@@ -6,7 +6,7 @@ import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
 import { RolesGuard } from './guard/roles.guard';
 import { Roles } from './decorator/roles.decorator';
-import { Role } from 'src/common/enum/role.enum';
+import { Role } from '../common/enum/role.enum';
 
 interface RequestWithUser extends Request {
   user: { nameUser: string; role: string };

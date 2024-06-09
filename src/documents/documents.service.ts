@@ -4,8 +4,8 @@ import { UpdateDocumentDto } from './dto/update-document.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Document } from './entities/document.entity';
 import { Repository } from 'typeorm';
-import { ActiveUserInterface } from 'src/common/interfaces/active.user.interface';
-import { Role } from 'src/common/enum/role.enum';
+import { ActiveUserInterface } from '../common/interfaces/active.user.interface';
+import { Role } from '../common/enum/role.enum';
 
 @Injectable()
 export class DocumentsService {

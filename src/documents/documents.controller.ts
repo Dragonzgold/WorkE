@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { DocumentsService } from './documents.service';
 import { CreateDocumentDto } from './dto/create-document.dto';
 import { UpdateDocumentDto } from './dto/update-document.dto';
-import { Auth } from 'src/auth/decorator/auth.decorator';
-import { Role } from 'src/common/enum/role.enum';
-import { ActiveUser } from 'src/common/decorators/active.user.decorator';
-import { ActiveUserInterface } from 'src/common/interfaces/active.user.interface';
+import { Auth } from '../auth/decorator/auth.decorator';
+import { Role } from '../common/enum/role.enum';
+import { ActiveUser } from '../common/decorators/active.user.decorator';
+import { ActiveUserInterface } from '../common/interfaces/active.user.interface';
 
 @Auth(Role.USER)
 @Controller('documents')
