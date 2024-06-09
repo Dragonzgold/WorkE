@@ -7,11 +7,13 @@ import { AuthGuard } from './guard/auth.guard';
 import { RolesGuard } from './guard/roles.guard';
 import { Roles } from './decorator/roles.decorator';
 import { Role } from '../common/enum/role.enum';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 interface RequestWithUser extends Request {
   user: { nameUser: string; role: string };
 }
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
 
@@ -28,6 +30,7 @@ export class AuthController {
     return this.authService.login(loginDto)
   }
 
+  @ApiBearerAuth()
   @Get("profile")
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.USER)
