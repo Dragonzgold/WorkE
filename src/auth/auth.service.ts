@@ -6,6 +6,8 @@ import { RegisterDto } from './dto/register.dto';
 import * as bcryptjs from "bcryptjs"
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
+import { ActiveUserInterface } from 'src/common/interfaces/active.user.interface';
 
 @Injectable()
 export class AuthService {
@@ -76,5 +78,17 @@ export class AuthService {
       email: user.email,
       token: token
     };
+  }
+
+  async getAll(){
+    return this.userService.getAllUsers()
+  }
+
+  async update(nameUser: string, updateUserDto: UpdateUserDto){
+    return await this.userService.updateUser(nameUser, updateUserDto)
+  }
+
+  async delete(nameUser:string){
+    return this.userService.deleteUser(nameUser)
   }
 }

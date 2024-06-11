@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       //Con este comando solo se permite que se introduzcan los datos que nosotros indiquemos
-      whitelist: true,
+      // whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
     })
@@ -26,7 +26,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("docs", app, document);
-
 
   await app.listen(parseInt(process.env.PORT) || 3000);
 }

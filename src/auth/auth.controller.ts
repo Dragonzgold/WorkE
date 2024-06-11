@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Request, Patch, Param, Query, ParseIntPipe, Delete } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -8,6 +8,8 @@ import { RolesGuard } from './guard/roles.guard';
 import { Roles } from './decorator/roles.decorator';
 import { Role } from '../common/enum/role.enum';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
+import { ActiveUserInterface } from 'src/common/interfaces/active.user.interface';
 
 interface RequestWithUser extends Request {
   user: { nameUser: string; role: string };
@@ -38,11 +40,27 @@ export class AuthController {
     return req.user;
   }
 
-  @Get("profile2")
+  @ApiBearerAuth()
+  @Get()
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.ADMIN)
-  profile2(@Request() req: RequestWithUser){
-    return req.user
+  getAll(){
+    return this.authService.getAll()
   }
 
+  @ApiBearerAuth()
+  @Patch(':nameUser')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.USER)
+  update(@Param('nameUser') nameUser: string, @Body()updateUserDto: UpdateUserDto){
+    return this.authService.update(nameUser, updateUserDto)
+  }
+
+  @ApiBearerAuth()
+  @Delete(':nameUser')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.ADMIN)
+  delete(@Param('nameUser') nameUser: string){
+    return this.authService.delete(nameUser)
+  }
 }
