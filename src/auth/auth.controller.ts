@@ -19,7 +19,6 @@ interface RequestWithUser extends Request {
 @Controller('auth')
 export class AuthController {
 
-
   constructor(private readonly authService: AuthService) {}
 
   @Post("register")
@@ -51,7 +50,7 @@ export class AuthController {
   @ApiBearerAuth()
   @Patch(':nameUser')
   @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.USER)
+  @Roles(Role.ADMIN)
   update(@Param('nameUser') nameUser: string, @Body()updateUserDto: UpdateUserDto){
     return this.authService.update(nameUser, updateUserDto)
   }
