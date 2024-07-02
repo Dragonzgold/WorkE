@@ -7,7 +7,7 @@
 docker-compose
 postgres
 .env
-
+typeorm.config.ts
 
 # Logs
 logs

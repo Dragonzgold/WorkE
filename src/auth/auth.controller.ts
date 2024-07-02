@@ -10,6 +10,7 @@ import { Role } from '../common/enum/role.enum';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 import { ActiveUserInterface } from 'src/common/interfaces/active.user.interface';
+import { tfachisaEntity } from 'src/tfachisadatatransfer/entity/tfachisa.entity';
 
 interface RequestWithUser extends Request {
   user: { nameUser: string; role: string };
